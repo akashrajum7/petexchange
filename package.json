@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/akashrajum7/petexchange/issues"
   },
-  "homepage": "https://github.com/akashrajum7/petexchange#readme"
+  "homepage": "https://github.com/akashrajum7/petexchange#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
 }
