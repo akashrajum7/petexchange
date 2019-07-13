@@ -1,3 +1,26 @@
 <% include ./partials/header %>
-Content goes here
+<style>
+    .col-md-3.col-sm-6{
+        padding: 10px;
+    }
+</style>
+<div class="container">
+    <div class="jumbotron">
+        <h1>Choose a pet to buy!</h1>
+    </div>
+    <div class="row"> 
+        <% petsforsale.forEach(function(petforsale){ %>
+            <div class="col-md-3 col-sm-6">
+                <div class="card">
+                    <img class="card-img-top" src="<%=petforsale.image%>">
+                    <div class="card-body">
+                        <h4 class="card-title"><%= petforsale.title %></h4>
+                        <p class="card-text">He is a good boi!</p>
+                        <a href="#" class="btn btn-primary">Buy</a>
+                    </div>
+                </div>
+            </div>
+        <% }); %>
+    </div>
+</div>  
 <% include ./partials/footer %>
