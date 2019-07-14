@@ -5,6 +5,10 @@ const express= require("express"),
 
 app.set("view engine", "ejs");
 
+//To be able to use external css
+
+app.use(express.static(__dirname + '/public'));
+
 //Routes
 
 app.get("/",function(req,res){
