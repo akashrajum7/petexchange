@@ -1,16 +1,32 @@
 //Initialization
+const express         = require("express"),
+      app             = express(),
+      dotenv          = require("dotenv"),
+      mongoose        = require("mongoose");
 
-const express= require("express"),
-      app    = express();
+dotenv.config();
 
 app.set("view engine", "ejs");
 
-//To be able to use external css
+//Connecting to database
+var mongourl=process.env.MONGO;
+mongoose.connect(mongourl, {useNewUrlParser: true});
 
+//Get the default connection
+var db = mongoose.connection;
+
+//Bind connection to error event (to get notification of connection errors)
+db.on('error', console.error.bind(console, 'MongoDB connection error:'));
+
+//Success message when connected to database
+db.once('open', function() {
+    console.log("Sucessfully connected to database!")
+  });
+
+//To be able to use external css
 app.use(express.static(__dirname + '/public'));
 
 //Routes
-
 app.get("/",function(req,res){
     var petsforsale = [
         {title:"Bull Dog",image:"https://negativespace.co/wp-content/uploads/2018/01/negative-space-bulldog-dog-pet-sleep-couch-thumb-1.jpg",location:"Bangalore",seller:"Chandan",price:"20000"},
@@ -26,8 +42,9 @@ app.get("/",function(req,res){
         {title:"Beagle",image:"https://negativespace.co/wp-content/uploads/2018/08/negative-space-golden-labrador-puppies-dog-happy-field-grass-flowers-chevanon-photography-thumb-1.jpg",location:"Goa",seller:"Akash",price:"25000"},
         {title:"Beagle",image:"https://negativespace.co/wp-content/uploads/2018/08/negative-space-golden-labrador-puppies-dog-happy-field-grass-flowers-chevanon-photography-thumb-1.jpg",location:"Goa",seller:"Akash",price:"25000"},
         {title:"Beagle",image:"https://negativespace.co/wp-content/uploads/2018/08/negative-space-golden-labrador-puppies-dog-happy-field-grass-flowers-chevanon-photography-thumb-1.jpg",location:"Goa",seller:"Akash",price:"25000"},
-    ]
-    res.render("homepage",{petsforsale:petsforsale});
+    ];
+    var fontawesome=process.env.FONTAWESOME;
+    res.render("homepage",{petsforsale:petsforsale,fontawesome:fontawesome});
 });
 
 //Port to listen on
