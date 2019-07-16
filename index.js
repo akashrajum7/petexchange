@@ -2,10 +2,14 @@
 const express         = require("express"),
       app             = express(),
       dotenv          = require("dotenv"),
-      mongoose        = require("mongoose");
+      mongoose        = require("mongoose"),
+      passport        = require("passport"),
+      LocalStrategy   = require("passport-local"),
+      bodyParser      = require("body-parser");
 
 dotenv.config();
 
+app.use(bodyParser.urlencoded({extended:true}));
 app.set("view engine", "ejs");
 
 //Connecting to database
@@ -40,7 +44,6 @@ var petSchema = new mongoose.Schema({
     title: String,
     image: String,
     location: String,
-    seller: String,
     price: Number,
 });
 
@@ -64,11 +67,10 @@ app.get("/",function(req,res){
     
 });
 
-//Signup
-app.get("/signup",function(req, res){
-    res.render("signup");
+//Post
+app.get("/post",function(req,res){
+    res.render("post");
 });
-
 
 //Signin
 app.get("/signin",function(req, res){
@@ -76,9 +78,14 @@ app.get("/signin",function(req, res){
 });
 
 //Signup
-app.get("/signup", function(req, res){
-    res.send("You are on signup page!");
+app.get("/signup",function(req, res){
+    res.render("signup");
 });
+
+app.post("/signup", function(req,res){
+
+});
+
 
 //404
 app.get("*", function(req, res){
