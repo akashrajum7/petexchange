@@ -27,13 +27,24 @@ db.once('open', function() {
 app.use(express.static(__dirname + '/public'));
 
 //User schema
-
 var userSchema = new mongoose.Schema({
     name: String,
     email: String,
-    phone: Number,
     password: String,
 });
+
+var User = mongoose.model("User", userSchema);
+
+//Pet schema
+var petSchema = new mongoose.Schema({
+    title: String,
+    image: String,
+    location: String,
+    seller: String,
+    price: Number,
+});
+
+var Pet = mongoose.model("Pet",petSchema);
 
 // Example data
 var petsforsale = [
@@ -59,12 +70,26 @@ var fontawesome=process.env.FONTAWESOME;
 
 //Homepage
 app.get("/",function(req,res){
-    res.render("homepage",{petsforsale:petsforsale,fontawesome:fontawesome});
+    //Get all the pets from database
+    Pet.find({},function(err, pets){
+        if(err){
+            console.log(err);
+        }else{
+            res.render("homepage",{pets:pets});
+        }
+    });
+    
 });
+
+//Signup
+app.get("/signup",function(req, res){
+    res.render("signup");
+});
+
 
 //Signin
 app.get("/signin",function(req, res){
-    res.send("You are on login page!");
+    res.render("signin");
 });
 
 //Signup

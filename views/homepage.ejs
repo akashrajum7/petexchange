@@ -1,21 +1,25 @@
-<% include ./partials/header %>
+<% include partials/header %>
 <div class="container">
     <div class="jumbotron">
         <h1>Choose a pet to buy!</h1>
     </div>
     <div class="row"> 
-        <% petsforsale.forEach(function(petforsale){ %>
+        <% pets.forEach(function(pet){ %>
+            <% if(pet.price>0){ %>
             <div class="col-md-3 col-sm-6">
                 <div class="card">
-                    <img class="card-img-top" src="<%=petforsale.image%>">
+                    <img class="card-img-top" src="<%=pet.image%>">
                     <div class="card-body">
-                        <h4 class="card-title"><%= petforsale.title %></h4>
+                        <h4 class="card-title"><%= pet.title %></h4>
                         <p class="card-text">He is a good boi!</p>
                         <a href="#" class="btn btn-primary">Buy</a>
                     </div>
                 </div>
             </div>
+            <% }else{ %>
+                <% continue; %>
+            <% } %>
         <% }); %>
     </div>
 </div>  
-<% include ./partials/footer %>
+<% include partials/footer %>
