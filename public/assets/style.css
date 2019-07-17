@@ -2,11 +2,18 @@
     padding:10px;
 }
 .jumbotron{
-    margin-top:1rem;
+    margin-top: 1rem;
+    margin-bottom: 0.4rem;
 }
 #signup-form{
     margin-top: 4rem;
 }
 #post-form{
     margin-top: 1rem;
+}
+.signin-form{
+    margin-top: 6rem;
+}
+h4,h5{
+    font-size: 1.3rem;
 }
