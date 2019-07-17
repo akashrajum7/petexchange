@@ -5,20 +5,18 @@
     </div>
     <div class="row"> 
         <% pets.forEach(function(pet){ %>
-            <% if(pet.price>0){ %>
             <div class="col-md-3 col-sm-6">
                 <div class="card">
-                    <img class="card-img-top" src="<%=pet.image%>">
+                    <img class="card-img-top" src="<%= pet.imageurl %>">
                     <div class="card-body">
                         <h4 class="card-title"><%= pet.title %></h4>
-                        <p class="card-text">He is a good boi!</p>
+                        <p class="card-text"><%= pet.discription %></p>
+                        <h5 class="card-text">Location: <%= pet.location %></h5>
+                        <h4 class="card-title">Rs. <%= pet.price %></h4>
                         <a href="#" class="btn btn-primary">Buy</a>
                     </div>
                 </div>
             </div>
-            <% }else{ %>
-                <% continue; %>
-            <% } %>
         <% }); %>
     </div>
 </div>  

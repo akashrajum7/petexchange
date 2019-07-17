@@ -3,27 +3,27 @@
 <div class="container">
     <div class="row h-100">
         <div class="col-md-5 mx-auto">
-            <form id="post-form">
+            <form id="post-form" action="/new" method="POST">
                 <h1>Post new ad</h1>
                 <div class="form-group">
                     <label for="post-title">Title</label>
-                    <input type="text" class="form-control" id="post-title" placeholder="Enter the title">
+                    <input type="text" name="title" class="form-control" id="post-title" placeholder="Enter the title">
                 </div>
                 <div class="form-group">
                     <label for="post-image">Image URL</label>
-                    <input type="text" class="form-control" id="post-image" placeholder="Enter the url of the image">
+                    <input type="text" name="imageurl" class="form-control" id="post-image" placeholder="Enter the url of the image">
                 </div>
                 <div class="form-group">
                     <label for="post-disc">Description</label>
-                    <input type="text" class="form-control" id="post-disc" placeholder="Enter the description">
+                    <input type="text" name="discription" class="form-control" id="post-disc" placeholder="Enter the description">
                 </div>
                 <div class="form-group">
                     <label for="post-loc">Location</label>
-                    <input type="text" class="form-control" id="post-loc" placeholder="Enter the location">
+                    <input type="text" name="location" class="form-control" id="post-loc" placeholder="Enter the location">
                 </div>
                 <div class="form-group">
                     <label for="post-price">Price</label>
-                    <input type="number" class="form-control" id="post-price" placeholder="Enter the price or enter 0 for adoption">
+                    <input type="number" name="price" class="form-control" id="post-price" placeholder="Enter the price or enter 0 for adoption">
                 </div>
                 <button type="submit" class="btn btn-primary">Submit</button>
             </form>

@@ -42,7 +42,8 @@ var User = mongoose.model("User", userSchema);
 //Pet schema
 var petSchema = new mongoose.Schema({
     title: String,
-    image: String,
+    imageurl: String,
+    discription: String,
     location: String,
     price: Number,
 });
@@ -67,10 +68,38 @@ app.get("/",function(req,res){
     
 });
 
-//Post
-app.get("/post",function(req,res){
-    res.render("post");
+//Post a new ad
+app.get("/new",function(req,res){
+    res.render("new");
 });
+
+app.post("/new", function(req, res){
+    //Get details from form
+    var title = req.body.title,
+        imageurl = req.body.imageurl,
+        discription = req.body.discription,
+        location = req.body.location,
+        price = req.body.price;
+
+    //Create a new pet object
+    var newPet = {
+        title: title,
+        imageurl: imageurl, 
+        discription: discription,
+        location: location,
+        price: price
+     };
+
+     //Push the object to database
+     Pet.create(newPet, function(err, newlyCreatedPet){
+        if(err){
+            res.send(err);
+        } else{
+            res.redirect("/");
+        }
+     });
+});
+
 
 //Signin
 app.get("/signin",function(req, res){
