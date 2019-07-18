@@ -41,32 +41,37 @@ app.use(require("express-session")({
 app.use(passport.initialize());
 app.use(passport.session());
 
-
-//User schema
-var userSchema = new mongoose.Schema({
-    username: String,
-    email: String,
-    password: String,
-});
-
-userSchema.plugin(passportLocalMongoose);
-
-var User = mongoose.model("User", userSchema);
-
-passport.use(new LocalStrategy(User.authenticate()));
-passport.serializeUser(User.serializeUser());
-passport.deserializeUser(User.deserializeUser());
-
 //Pet schema
 var petSchema = new mongoose.Schema({
     title: String,
     imageurl: String,
     discription: String,
     location: String,
-    price: Number,
+    price: Number
 });
 
 var Pet = mongoose.model("Pet",petSchema);
+
+//User schema
+var userSchema = new mongoose.Schema({
+    username: String,
+    email: String,
+    password: String,
+    ads: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Pet"
+    }]
+});
+
+userSchema.plugin(passportLocalMongoose);
+
+var User = mongoose.model("User", userSchema);
+
+//Adding functions to passport from passport local and passport local mongoose
+passport.use(new LocalStrategy(User.authenticate()));
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
+
 
 //Getting fontawesome link from env variables
 var fontawesome=process.env.FONTAWESOME;
@@ -119,7 +124,23 @@ app.post("/new", isLoggedIn,function(req, res){
         if(err){
             res.send(err);
         } else{
-            res.redirect("/");
+            //Look for the user creating the post
+            User.findOne({username: req.user.username}, function(err, foundUser){
+                if(err){
+                    res.send(err);
+                } else {
+                    //Add the pet posted to user's list of ads
+                    foundUser.ads.push(newlyCreatedPet);
+                    foundUser.save(function(err, adPushed){
+                        if(err){
+                            res.send(err);
+                        } else {
+                            res.redirect("/");
+                        }
+                    });
+                    
+                }
+            });
         }
      });
 });
