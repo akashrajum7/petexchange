@@ -17,3 +17,9 @@
 h4,h5{
     font-size: 1.3rem;
 }
+.card-img-top{
+    height:45%;
+}
+.card-title {
+    margin-bottom: 1rem;
+}
