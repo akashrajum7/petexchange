@@ -16,5 +16,5 @@ var petSchema = new mongoose.Schema({
 
 var Pet = mongoose.model("Pet",petSchema);
 
-//We are exporting 
+//Exporting pet model 
 module.exports = Pet;
