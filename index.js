@@ -4,8 +4,8 @@ const express               = require("express"),
       dotenv                = require("dotenv"),
       mongoose              = require("mongoose"),
       passport              = require("passport"),
-      LocalStrategy         = require("passport-local"),
-      passportLocalMongoose = require("passport-local-mongoose"),
+      Pet                   = require("./models/pet"),
+      User                  = require("./models/user"),
       bodyParser            = require("body-parser");
 
 dotenv.config();
@@ -41,38 +41,6 @@ app.use(require("express-session")({
 app.use(passport.initialize());
 app.use(passport.session());
 
-//Pet schema
-var petSchema = new mongoose.Schema({
-    title: String,
-    imageurl: String,
-    discription: String,
-    location: String,
-    price: Number
-});
-
-var Pet = mongoose.model("Pet",petSchema);
-
-//User schema
-var userSchema = new mongoose.Schema({
-    username: String,
-    email: String,
-    password: String,
-    ads: [{
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "Pet"
-    }]
-});
-
-userSchema.plugin(passportLocalMongoose);
-
-var User = mongoose.model("User", userSchema);
-
-//Adding functions to passport from passport local and passport local mongoose
-passport.use(new LocalStrategy(User.authenticate()));
-passport.serializeUser(User.serializeUser());
-passport.deserializeUser(User.deserializeUser());
-
-
 //Getting fontawesome link from env variables
 var fontawesome=process.env.FONTAWESOME;
 
@@ -87,7 +55,7 @@ app.use(function(req, res, next){
 //Homepage
 app.get("/",function(req,res){
     //Get all the pets from database
-    Pet.find({},function(err, pets){
+    Pet.find({}).populate("user").exec(function(err, pets){
         if(err){
             console.log(err);
         }else{
@@ -108,7 +76,8 @@ app.post("/new", isLoggedIn,function(req, res){
         imageurl = req.body.imageurl,
         discription = req.body.discription,
         location = req.body.location,
-        price = req.body.price;
+        price = req.body.price,
+        user =req.user;
 
     //Create a new pet object
     var newPet = {
@@ -116,7 +85,8 @@ app.post("/new", isLoggedIn,function(req, res){
         imageurl: imageurl, 
         discription: discription,
         location: location,
-        price: price
+        price: price,
+        user: user
      };
 
      //Push the object to database
