@@ -59,10 +59,25 @@ app.get("/",function(req,res){
         if(err){
             console.log(err);
         }else{
+            //Render the page
             res.render("homepage",{pets: pets});
         }
     });
     
+});
+
+//Adoption page
+
+app.get("/adopt", function(req, res){
+    //Get all the pets from database
+    Pet.find({}).populate("user").exec(function(err, pets){
+        if(err){
+            console.log(err);
+        }else{
+            //Render the page
+            res.render("adopt",{pets: pets});
+        }
+    });
 });
 
 //Post a new ad

@@ -1,11 +1,11 @@
 <% include partials/header %>
 <div class="container">
     <div class="jumbotron">
-        <h1>Browse through ads and choose a pet</h1>
+        <h1>Choose a pet to adopt</h1>
     </div>
     <div class="row"> 
         <% pets.forEach(function(pet){ %>
-            <% if(pet.price>0){ %>
+            <% if(pet.price==0){ %>
             <div class="col-md-3 col-sm-6">
                 <div class="card h-100">
                     <img class="card-img-top" src="<%= pet.imageurl %>">
