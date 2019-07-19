@@ -109,23 +109,43 @@ app.post("/new", isLoggedIn,function(req, res){
         if(err){
             res.send(err);
         } else{
-            //Look for the user creating the post
-            User.findOne({username: req.user.username}, function(err, foundUser){
-                if(err){
-                    res.send(err);
-                } else {
-                    //Add the pet posted to user's list of ads
-                    foundUser.ads.push(newlyCreatedPet);
-                    foundUser.save(function(err, adPushed){
-                        if(err){
-                            res.send(err);
-                        } else {
-                            res.redirect("/");
-                        }
-                    });
-                    
-                }
-            });
+            //Checking to see if the pet is posted in adoption or it's an ad
+            if(newlyCreatedPet.price == 0){
+                //Look for the user creating the post
+                User.findOne({username: req.user.username}, function(err, foundUser){
+                    if(err){
+                        res.send(err);
+                    } else {
+                        //Add the pet posted to user's list of ads
+                        foundUser.ads.push(newlyCreatedPet);
+                        foundUser.save(function(err, adPushedToUser){
+                            if(err){
+                                res.send(err);
+                            } else {
+                                res.redirect("/adopt");
+                            }
+                        });
+                        
+                    }
+                });
+            } else {
+                User.findOne({username: req.user.username}, function(err, foundUser){
+                    if(err){
+                        res.send(err);
+                    } else {
+                        //Add the pet posted to user's list of ads
+                        foundUser.ads.push(newlyCreatedPet);
+                        foundUser.save(function(err, adPushedToUser){
+                            if(err){
+                                res.send(err);
+                            } else {
+                                res.redirect("/");
+                            }
+                        });
+                        
+                    }
+                });
+            }            
         }
      });
 });

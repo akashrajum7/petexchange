@@ -18,7 +18,8 @@ h4,h5{
     font-size: 1.3rem;
 }
 .card-img-top{
-    height:45%;
+    max-height: 150px;
+    object-fit: cover;
 }
 .card-title {
     margin-bottom: 1rem;

@@ -7,12 +7,11 @@
         <% pets.forEach(function(pet){ %>
             <% if(pet.price==0){ %>
             <div class="col-md-3 col-sm-6">
-                <div class="card h-100">
+                <div class="card">
                     <img class="card-img-top" src="<%= pet.imageurl %>">
                     <div class="card-body">
                         <h4 class="card-title"><%= pet.title %></h4>
                         <p class="card-text"><i class="fas fa-map-marker-alt"></i> Location: <%= pet.location %></p>
-                        <h4 class="card-title"><i class="fas fa-rupee-sign"></i> <%= pet.price %></h4>
                         <% pet.user.forEach(function(theuser){ %>
                             <p class="card-text"><i class="fas fa-user"></i> <%= theuser.username %> </p>
                         <% }); %>
