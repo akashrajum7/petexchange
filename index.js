@@ -68,14 +68,14 @@ app.get("/",function(req,res){
 
 //Adoption page
 
-app.get("/adopt", function(req, res){
+app.get("/shop", function(req, res){
     //Get all the pets from database
     Pet.find({}).populate("user").exec(function(err, pets){
         if(err){
             console.log(err);
         }else{
             //Render the page
-            res.render("adopt",{pets: pets});
+            res.render("shop",{pets: pets});
         }
     });
 });

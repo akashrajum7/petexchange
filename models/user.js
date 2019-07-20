@@ -7,9 +7,18 @@ const   mongoose              = require("mongoose"),
 
 //User schema
 var userSchema = new mongoose.Schema({
-    username: String,
-    email: String,
-    password: String,
+    username: {
+        type: String,
+        required:true
+        },
+    email: {
+        type: String,
+        required:true
+        },
+    password: {
+        type: String,
+        required:true
+        },
     ads: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: "Pet"
