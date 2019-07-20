@@ -1,3 +1,4 @@
+//Importing npm packages
 const   mongoose              = require("mongoose"),
         passport              = require("passport"),
         LocalStrategy         = require("passport-local"),
