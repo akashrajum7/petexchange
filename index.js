@@ -57,6 +57,7 @@ app.use(function(req,res,next){
     res.locals.error                = req.flash("error");
     res.locals.successfulllogout    = req.flash("successfulllogout");
     res.locals.success              = req.flash("success");
+    res.locals.successfullsignup    = req.flash("successfullsignup");
     next();
 })
 
@@ -185,12 +186,14 @@ app.get("/signup",function(req, res){
 
 app.post("/signup", function(req,res){
     var newUser = new User({username: req.body.username, email: req.body.email});
+    console.log(req.body.password)
     User.register(newUser, req.body.password, function(err, user){
         if(err){
             console.log(err);
-            return res.render("signup")
+            return res.render("signup");
         }
         passport.authenticate("local")(req,res,function(){
+            req.flash("successfullsignup","You have been successfully signed up.");
             res.redirect("/");
         });
     });

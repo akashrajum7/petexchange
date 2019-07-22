@@ -15,10 +15,6 @@ var userSchema = new mongoose.Schema({
         type: String,
         required:true
         },
-    password: {
-        type: String,
-        required:true
-        },
     ads: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: "Pet"
