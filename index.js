@@ -6,12 +6,14 @@ const express               = require("express"),
       passport              = require("passport"),
       Pet                   = require("./models/pet"),
       User                  = require("./models/user"),
-      bodyParser            = require("body-parser");
+      bodyParser            = require("body-parser"),
+      flash                 = require("connect-flash");
 
 dotenv.config();
 
 app.use(bodyParser.urlencoded({extended:true}));
 app.set("view engine", "ejs");
+app.use(flash());
 
 //Connecting to database
 var mongourl=process.env.MONGO;
@@ -50,6 +52,14 @@ app.use(function(req, res, next){
     next();
 });
 
+//Funciton to send success or failure to all routes
+app.use(function(req,res,next){
+    res.locals.error                = req.flash("error");
+    res.locals.successfulllogout    = req.flash("successfulllogout");
+    res.locals.success              = req.flash("success");
+    next();
+})
+
 //ROUTES
 
 //Homepage
@@ -60,7 +70,9 @@ app.get("/",function(req,res){
             console.log(err);
         }else{
             //Render the page
-            res.render("homepage",{pets: pets});
+            res.render("homepage",{
+                pets: pets,
+            });
         }
     });
     
@@ -160,7 +172,9 @@ app.get("/signin",function(req, res){
 app.post("/signin", passport.authenticate("local",
 {
     successRedirect: "/",
-    failureRedirect: "/signin"
+    failureRedirect: "/signin",
+    failureFlash: true,
+    successFlash: "You have successfully logged in."
 }),function(req, res){
 });
 
@@ -185,6 +199,7 @@ app.post("/signup", function(req,res){
 //Logout route
 app.get("/logout", function(req, res){
     req.logout();
+    req.flash("successfulllogout","You have been successfully logged out.");
     res.redirect("/");
 });
 

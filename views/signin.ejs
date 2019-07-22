@@ -6,6 +6,13 @@
 
         </div>
         <div class="col-md-4 signin-form">
+            <% if(error && error.length > 0) { %>
+                <div class="alert alert-danger" role="alert">
+                    <div class="container">
+                        <%= error %>
+                    </div>
+                </div>
+            <% } %>
             <form  id="form" action="/signin" method="POST">
                 <h1>Login</h1><hr>
                 <div class="form-group">

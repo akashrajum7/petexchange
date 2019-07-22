@@ -1,9 +1,25 @@
 <% include partials/header %>
 <div class="container">
+    <% if(success && success.length > 0) { %>
+        <div class="alert alert-success alert-dismissible fade show alert-homepage" role="alert">
+            <%= success %>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    <% } %> 
+    <% if(successfulllogout && successfulllogout.length > 0) { %>
+        <div class="alert alert-warning alert-dismissible fade show alert-homepage" role="alert">
+            <%= successfulllogout %>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    <% } %> 
     <div class="jumbotron">
         <h1>Choose a pet to adopt</h1>
     </div>
-    <div class="row"> 
+    <div class="row">
         <% pets.forEach(function(pet){ %>
             <% if(pet.price==0){ %>
             <div class="col-md-3 col-sm-6">
