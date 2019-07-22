@@ -17,7 +17,7 @@ app.use(flash());
 
 //Connecting to database
 var mongourl=process.env.MONGO;
-mongoose.connect(mongourl, {useNewUrlParser: true});
+mongoose.connect(mongourl, {useNewUrlParser: true,useCreateIndex: true});
 
 //Get the default connection
 var db = mongoose.connection;
@@ -190,7 +190,8 @@ app.post("/signup", function(req,res){
     User.register(newUser, req.body.password, function(err, user){
         if(err){
             console.log(err);
-            return res.render("signup");
+            req.flash("error", "Signup failed, Please check your details.")
+            res.redirect('/signup');
         }
         passport.authenticate("local")(req,res,function(){
             req.flash("successfullsignup","You have been successfully signed up.");
