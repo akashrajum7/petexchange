@@ -58,6 +58,7 @@ app.use(function(req,res,next){
     res.locals.successfulllogout    = req.flash("successfulllogout");
     res.locals.success              = req.flash("success");
     res.locals.successfullsignup    = req.flash("successfullsignup");
+    res.locals.loginrequired        = req.flash("loginrequired");
     next();
 })
 
@@ -76,7 +77,6 @@ app.get("/",function(req,res){
             });
         }
     });
-    
 });
 
 //Adoption page
@@ -135,7 +135,8 @@ app.post("/new", isLoggedIn,function(req, res){
                             if(err){
                                 res.send(err);
                             } else {
-                                res.redirect("/adopt");
+                                req.flash("success","Your post has been successfully posetd.");
+                                res.redirect("/");
                             }
                         });
                         
@@ -152,7 +153,8 @@ app.post("/new", isLoggedIn,function(req, res){
                             if(err){
                                 res.send(err);
                             } else {
-                                res.redirect("/");
+                                req.flash("success","Your post has been successfully posted.");
+                                res.redirect("/shop");
                             }
                         });
                         
@@ -186,7 +188,6 @@ app.get("/signup",function(req, res){
 
 app.post("/signup", function(req,res){
     var newUser = new User({username: req.body.username, email: req.body.email});
-    console.log(req.body.password)
     User.register(newUser, req.body.password, function(err, user){
         if(err){
             console.log(err);
@@ -217,6 +218,7 @@ function isLoggedIn(req, res, next){
     if(req.isAuthenticated()){
         return next();
     }
+    req.flash("loginrequired","Please login first.")
     res.redirect("/signin");
 }
 

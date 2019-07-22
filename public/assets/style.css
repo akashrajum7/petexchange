@@ -27,3 +27,6 @@ h4,h5{
 .alert-homepage{
     margin-top: 16px;
 }
+#post-form {
+    margin-bottom: 1rem;
+}
