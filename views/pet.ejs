@@ -1,0 +1,40 @@
+<% include partials/header %>
+
+<div class="container det-cont">
+    <div class="row">
+        <div class="col-lg-6 col-md-6 col-sm-6">
+            <div class="card">
+                <div class="card-header">
+                    <h4>Photo</h4>
+                </div>
+                <div class="card-body">
+                        <img src="<%= pet.imageurl %>" class="img-fluid" alt="Responsive image">
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6 col-md-6 col-sm-6">
+            <div class="card">
+                <div class="card-header">
+                    <h4>Contact Details</h4>
+                </div>
+                <div class="card-body">
+                    <p><strong>Title :</strong> <%= pet.title %></p>
+                    <p><strong>Location :</strong> <%= pet.location %></p>
+                    <% if (pet.price>0){ %>
+                        <p><strong>Price :</strong> <%= pet.price %></p>
+                    <% } %>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="card text-center disc-bod">
+        <div class="card-header">
+            <h4>Description</h4>
+        </div>
+        <div class="card-body">
+            <p><%= pet.description %></p>
+        </div>
+    </div>
+</div>
+
+<% include partials/footer %>

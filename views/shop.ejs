@@ -24,7 +24,7 @@
                         <% pet.user.forEach(function(theuser){ %>
                             <p class="card-text"><i class="fas fa-user"></i> <%= theuser.username %> </p>
                         <% }); %>
-                        <a href="#" class="btn btn-primary">Contact</a>
+                        <a href="/pets/<%= pet._id %>" class="btn btn-primary">More info</a>
                     </div>
                 </div>
             </div>

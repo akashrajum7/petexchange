@@ -5,7 +5,7 @@ const   mongoose = require("mongoose");
 var petSchema = new mongoose.Schema({
     title: String,
     imageurl: String,
-    discription: String,
+    description: String,
     location: String,
     price: Number,
     user: [{
