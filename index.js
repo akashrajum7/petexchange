@@ -7,6 +7,7 @@ const express               = require("express"),
       Pet                   = require("./models/pet"),
       User                  = require("./models/user"),
       bodyParser            = require("body-parser"),
+      $                     = require("jquery"),
       flash                 = require("connect-flash");
 
 dotenv.config();
