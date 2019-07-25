@@ -15,7 +15,7 @@
         <div class="col-lg-6 col-md-6 col-sm-6">
             <div class="card">
                 <div class="card-header">
-                    <h4>Contact Details</h4>
+                    <h4>Details</h4>
                 </div>
                 <div class="card-body">
                     <p><strong>Title :</strong> <%= pet.title %></p>
@@ -23,6 +23,11 @@
                     <% if (pet.price>0){ %>
                         <p><strong>Price :</strong> <%= pet.price %></p>
                     <% } %>
+                    <% pet.user.forEach(function(theuser){ %>
+                        <p><strong>Posted by :</strong> <%= theuser.username %> </p>
+                        <p><strong>Email :</strong> <%= theuser.email %> </p>
+                        <p><strong>Phone :</strong> <%= theuser.phone %> </p>
+                    <% }); %>
                 </div>
             </div>
         </div>

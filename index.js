@@ -168,7 +168,7 @@ app.post("/new", isLoggedIn,function(req, res){
 //View ad page
 app.get("/pets/:id", isLoggedIn, function(req, res){
     //Get the pet from database
-    Pet.findById(req.params.id, function(err, foundPet){
+    Pet.findById(req.params.id).populate("user").exec(function(err, foundPet){
         if(err){
             console.log(err);
         } else {
