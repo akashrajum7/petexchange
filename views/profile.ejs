@@ -1,5 +1,46 @@
 <% include partials/header %>
 
-This will soon be profile page!
+<div class="container">
+    <div class="row prof-row">
+        <div class="col">
+            <div class="card text-center">
+                <div class="card-header">
+                    <h4>Welcome to your profile!</h4>
+                </div>
+                <div class="card-body">
+                    <p><strong>Username :</strong> <%= user.username %></p>
+                    <p><strong>Email :</strong> <%= user.email %></p>
+                    <p><strong>Phone :</strong> <%= user.phone %></p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row prof-row">
+        <div class="col">
+            <div class="card">
+                <div class="card-header">
+                    <h4>Ads you posted!</h4>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <% user.ads.forEach(function(ad){ %>
+                            <div class="col-md-3 col-sm-6">
+                                <div class="card">
+                                    <img class="card-img-top" src="<%= ad.imageurl %>">
+                                    <div class="card-body">
+                                        <h4 class="card-title"><%= ad.title %></h4>
+                                        <p class="card-text"><i class="fas fa-map-marker-alt"></i> Location: <%= ad.location %></p>
+                                        <p class="card-text"><i class="fas fa-user"></i> <%= user.username %> </p>
+                                        <a href="/pets/<%= ad._id %> " class="btn btn-primary">More info</a>
+                                    </div>
+                                </div>
+                            </div>
+                        <% }); %>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>        
+</div>
 
 <% include partials/footer %>
