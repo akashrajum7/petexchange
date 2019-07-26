@@ -22,12 +22,20 @@
                     <p><strong>Location :</strong> <%= pet.location %></p>
                     <% if (pet.price>0){ %>
                         <p><strong>Price :</strong> <%= pet.price %></p>
+                    <% } else { %>
+                        <p><strong>Type :</strong> <i class="fas fa-heart"></i> Adoption</p>
                     <% } %>
                     <% pet.user.forEach(function(theuser){ %>
                         <p><strong>Posted by :</strong> <%= theuser.username %> </p>
                         <p><strong>Email :</strong> <%= theuser.email %> </p>
                         <p><strong>Phone :</strong> <%= theuser.phone %> </p>
                     <% }); %>
+                    <% if(pet.user[0]._id == curUser.id){ %>
+                        <a href="/ads/<%= pet._id %>/edit" class="btn btn-warning">Edit</a>
+                        <form action="/ads/<%= pet._id %>?_method=DELETE" method="POST">
+                            <button class="btn btn-danger btn-del">Delete</button>
+                        </form>
+                    <% } %>
                 </div>
             </div>
         </div>

@@ -1,0 +1,46 @@
+<% include partials/header %>
+
+<div class="container">
+    <div class="row h-100">
+        <div class="col-md-5 mx-auto">
+            <form id="post-form" action="/ads/<%= ad._id %>?_method=PUT" method="POST">
+                <h1>Edit <%= ad.title %></h1><hr>
+                <div class="form-group">
+                    <label for="post-title">Title</label>
+                    <input type="text" name="pet[title]" class="form-control" id="post-title" value="<%= ad.title %>" required>
+                </div>
+                <div class="form-group">
+                    <label for="post-image">Image URL</label>
+                    <input type="text" name="pet[imageurl]" class="form-control" id="post-image" value="<%= ad.imageurl %>" required>
+                </div>
+                <div class="form-group">
+                    <label for="post-disc">Description</label>
+                    <input type="text" name="pet[description]" class="form-control" id="post-disc" value="<%= ad.description %>">
+                </div>
+                <div class="form-group">
+                    <label for="inoutCity">Location</label>
+                    <select id="inputCity" class="form-control" name="pet[location]" required>
+                        <option value="" <% if(ad.location == ""){ %><%= "selected" %><% ;} %> disabled>Choose a city</option>
+                        <option <% if(ad.location == "Mumbai"){ %><%= "selected" %><% ;} %>>Mumbai</option>
+                        <option <% if(ad.location == "New Delhi"){ %><%= "selected" %><% ;} %>>New Delhi</option>
+                        <option <% if(ad.location == "Kolkata"){ %><%= "selected" %><% ;} %>>Kolkata</option>
+                        <option <% if(ad.location == "Chennai"){ %><%= "selected" %><% ;} %>>Chennai</option>
+                        <option <% if(ad.location == "Bangalore"){ %><%= "selected" %><% ;} %>>Bangalore</option>
+                        <option <% if(ad.location == "Hyderabad"){ %><%= "selected" %><% ;} %>>Hyderabad</option>
+                        <option <% if(ad.location == "Ahmedabad"){ %><%= "selected" %><% ;} %>>Ahmedabad</option>
+                        <option <% if(ad.location == "Pune"){ %><%= "selected" %><% ;} %>>Pune</option>
+                        <option <% if(ad.location == "Surat"){ %><%= "selected" %><% ;} %>>Surat</option>
+                        <option <% if(ad.location == "Jaipur"){ %><%= "selected" %><% ;} %>>Jaipur</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="post-price">Price</label>
+                    <input type="number" name="pet[price]" class="form-control" id="post-price" value="<%= ad.price %>" required>
+                </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+        </div>    
+    </div>
+</div>
+
+<% include partials/footer %>

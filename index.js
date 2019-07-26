@@ -19,7 +19,7 @@ app.use(methodOverride("_method"));
 
 //Connecting to database
 var mongourl=process.env.MONGO;
-mongoose.connect(mongourl, {useNewUrlParser: true,useCreateIndex: true});
+mongoose.connect(mongourl, {useNewUrlParser: true,useCreateIndex: true, useFindAndModify: false});
 
 //Get the default connection
 var db = mongoose.connection;
@@ -59,6 +59,7 @@ app.use(function(req,res,next){
     res.locals.error                = req.flash("error");
     res.locals.successfulllogout    = req.flash("successfulllogout");
     res.locals.success              = req.flash("success");
+    res.locals.failure              = req.flash("failure");
     res.locals.successfullsignup    = req.flash("successfullsignup");
     res.locals.loginrequired        = req.flash("loginrequired");
     next();
@@ -168,21 +169,53 @@ app.post("/new", isLoggedIn,function(req, res){
 });
 
 //Edit ad page
-app.get("/ads/:id/edit", function(req, res){
-    res.send("Edit ads page");
+app.get("/ads/:id/edit",isLoggedIn, isOwner, function(req, res){
+    Pet.findById(req.params.id, function(err, foundPet){
+        if(err){
+            res.flash("failure", "Ad not found.");
+            res.redirect("/");
+        } else {
+            
+            res.render("edit", {ad: foundPet});
+        }
+    });
 });
 
-//View ad page
+app.put("/ads/:id",isLoggedIn, isOwner, function(req, res){
+    Pet.findByIdAndUpdate(req.params.id, req.body.pet, function(err, updatedAd){
+        if(err){
+            req.flash("failure", "The campground could not be updated");
+            res.redirect("/");
+        } else {
+            res.redirect("/ads/" + req.params.id);
+        }
+    });
+});
+
+//View ad route
 app.get("/ads/:id", isLoggedIn, function(req, res){
     //Get the pet from database
     Pet.findById(req.params.id).populate("user").exec(function(err, foundPet){
         if(err){
             console.log(err);
         } else {
-            res.render("pet",{pet: foundPet});
+            res.render("pet",{pet: foundPet,curUser: req.user});
         }
     });
     
+});
+
+//Delete an ad route
+app.delete("/ads/:id", function(req, res){
+    Pet.findByIdAndRemove(req.params.id, function(err){
+        if(err){
+            req.flash("failure", "The ad could not be deleted");
+            res.redirect("/");
+        } else {
+            req.flash("success", "The ad was successfully deleted");
+            res.redirect("/");
+        }
+    });
 });
 
 //User's profile page
@@ -260,6 +293,18 @@ function isSameUser(req, res, next){
     }
     req.flash("loginrequired","Please login as the user first");
     res.redirect("/signin");
+}
+
+//Middleware to check if the user is owner of post while editing
+function isOwner(req, res, next){
+    Pet.findById(req.params.id, function(err, foundPet){
+        if(foundPet.user[0] == req.user.id){
+            return next();
+        } else {
+            req.flash("failure", "Only owners are allowed to modify the ads");
+            res.redirect("/");
+        }
+    });
 }
 
 //Port to listen on
