@@ -7,6 +7,7 @@ const express               = require("express"),
       Pet                   = require("./models/pet"),
       User                  = require("./models/user"),
       bodyParser            = require("body-parser"),
+      methodOverride        = require("method-override"),
       flash                 = require("connect-flash");
 
 dotenv.config();
@@ -14,6 +15,7 @@ dotenv.config();
 app.use(bodyParser.urlencoded({extended:true}));
 app.set("view engine", "ejs");
 app.use(flash());
+app.use(methodOverride("_method"));
 
 //Connecting to database
 var mongourl=process.env.MONGO;
@@ -115,10 +117,10 @@ app.post("/new", isLoggedIn,function(req, res){
         location: location,
         price: price,
         user: user
-     };
+    };
 
-     //Push the object to database
-     Pet.create(newPet, function(err, newlyCreatedPet){
+    //Push the object to database
+    Pet.create(newPet, function(err, newlyCreatedPet){
         if(err){
             res.send(err);
         } else{
@@ -162,11 +164,16 @@ app.post("/new", isLoggedIn,function(req, res){
                 });
             }            
         }
-     });
+    });
+});
+
+//Edit ad page
+app.get("/ads/:id/edit", function(req, res){
+    res.send("Edit ads page");
 });
 
 //View ad page
-app.get("/pets/:id", isLoggedIn, function(req, res){
+app.get("/ads/:id", isLoggedIn, function(req, res){
     //Get the pet from database
     Pet.findById(req.params.id).populate("user").exec(function(err, foundPet){
         if(err){
