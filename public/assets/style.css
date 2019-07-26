@@ -1,5 +1,6 @@
 body{
     font-family: 'Montserrat', sans-serif;
+    font-size: 0.9rem;
 }
 .navbar-brand{
     font-weight: 700;
@@ -47,4 +48,7 @@ h4,h5{
 }
 .btn-del{
     margin-top: 1rem;
+}
+#head-img{
+    margin-bottom: 3px;
 }
