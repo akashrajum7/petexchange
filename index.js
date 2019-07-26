@@ -218,13 +218,37 @@ app.delete("/ads/:id", function(req, res){
     });
 });
 
-//User's profile page
+//User's profile route
 app.get("/user/:id", isLoggedIn, isSameUser, function(req, res){
     User.findById(req.params.id).populate("ads").exec(function(err, foundUser){
         if(err){
             console.log(err);
         } else {
             res.render("profile",{user: foundUser});
+        }
+    });
+});
+
+//Edit user's profile page
+app.get("/user/:id/edit",isLoggedIn, isSameUser, function(req, res){
+    User.findById(req.params.id, function(err, foundUser){
+        if(err){
+            req.flash("failure", "The user was not found.");
+            res.redirect("/");
+        } else {
+            res.render("useredit",{user: foundUser});
+        }
+    });
+});
+
+app.put("/user/:id", isLoggedIn, isSameUser, function(req, res){
+    User.findByIdAndUpdate(req.params.id, req.body.user, function(err, updatedUser){
+        if(err){
+            req.flash("failure", "Updating user's profile failed");
+            res.redirect("/user/" + req.params.id);
+        } else {
+            req.flash("success", "Your profile has been updated.");
+            res.redirect("/user/" + req.params.id);
         }
     });
 });
