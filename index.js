@@ -180,7 +180,13 @@ app.get("/pets/:id", isLoggedIn, function(req, res){
 
 //User's profile page
 app.get("/user/:id", isLoggedIn, isSameUser, function(req, res){
-    res.send("This will soon be profile page.");
+    User.findById(req.params.id).populate("ads").exec(function(err, foundUser){
+        if(err){
+            console.log(err);
+        } else {
+            res.render("profile",{user: foundUser});
+        }
+    });
 });
 
 //AUTH ROUTES
