@@ -61,7 +61,7 @@
                 </li>
                 <% } else { %>
                 <li class="nav-item">
-                    <a class="nav-link"><i class="fas fa-user"></i> <%= currentUser.username %></a>
+                    <a class="nav-link" href="/user/<%= currentUser._id %>"><i class="fas fa-user"></i> <%= currentUser.username %></a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="/logout"><i class="fas fa-sign-out-alt"></i> Logout</a>

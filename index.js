@@ -178,6 +178,11 @@ app.get("/pets/:id", isLoggedIn, function(req, res){
     
 });
 
+//User's profile page
+app.get("/user/:id", isLoggedIn, isSameUser, function(req, res){
+    res.send("This will soon be profile page.");
+});
+
 //AUTH ROUTES
 
 //Signin
@@ -231,7 +236,16 @@ function isLoggedIn(req, res, next){
     if(req.isAuthenticated()){
         return next();
     }
-    req.flash("loginrequired","Please login first.")
+    req.flash("loginrequired","Please login first.");
+    res.redirect("/signin");
+}
+
+//Check if the user is the same middleware
+function isSameUser(req, res, next){
+    if(req.params.id == req.user._id){
+        return next();
+    }
+    req.flash("loginrequired","Please login as the user first");
     res.redirect("/signin");
 }
 
