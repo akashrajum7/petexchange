@@ -21,7 +21,7 @@
                 </div>
             <% } %>
             <form  id="form" action="/signin" method="POST">
-                <h1>Login</h1><hr>
+                <h1>Signin</h1><hr>
                 <div class="form-group">
                     <label for="emailinput">Username</label>
                     <input type="text" name="username" class="form-control" id="emailinput" placeholder="Enter username" required>
@@ -32,7 +32,9 @@
                 </div>
                 <div class="form-group">
                 <button type="submit" class="btn btn-primary">Submit</button>
-               
+               </div>
+               <div class="form-group">
+                   <p>Don't have an account? <strong><a href="/signup">Signup</a></strong></p>
                </div>
             </form>
         </div>
