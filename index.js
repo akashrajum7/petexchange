@@ -229,7 +229,7 @@ app.get("/user/:id", isLoggedIn, isSameUser, function(req, res){
     });
 });
 
-//Edit user's profile page
+//Edit user's profile route
 app.get("/user/:id/edit",isLoggedIn, isSameUser, function(req, res){
     User.findById(req.params.id, function(err, foundUser){
         if(err){
