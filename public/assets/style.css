@@ -1,6 +1,6 @@
 body{
     font-family: 'Montserrat', sans-serif;
-    font-size: 0.9rem;
+    font-size: 0.9rem !important;
 }
 .navbar-brand{
     font-weight: 700;

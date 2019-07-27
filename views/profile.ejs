@@ -49,9 +49,9 @@
                                         <p class="card-text"><i class="fas fa-map-marker-alt"></i> Location: <%= ad.location %></p>
                                         <p class="card-text"><i class="fas fa-user"></i> <%= user.username %> </p>
                                         <% if (ad.price>0){ %>
-                                            <p><strong>Price :</strong> <%= ad.price %></p>
+                                            <p class="card-text"><i class="fas fa-rupee-sign"></i> <%= ad.price %></p>
                                         <% } else {%>
-                                            <p><i class="fas fa-heart"></i> Adoption</p>
+                                            <p class="card-text"><i class="fas fa-heart"></i> Adoption</p>
                                         <% } %>
                                         <a href="/ads/<%= ad._id %> " class="btn btn-primary">More info</a>
                                     </div>
