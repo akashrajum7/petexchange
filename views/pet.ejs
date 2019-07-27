@@ -1,6 +1,14 @@
 <% include partials/header %>
 
 <div class="container det-cont">
+    <% if(success && success.length > 0) { %>
+        <div class="alert alert-success alert-dismissible fade show alert-homepage" role="alert">
+            <%= success %>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    <% } %> 
     <div class="row">
         <div class="col-lg-6 col-md-6 col-sm-6">
             <div class="card">
@@ -25,6 +33,7 @@
                     <% } else { %>
                         <p><strong>Type :</strong> <i class="fas fa-heart"></i> Adoption</p>
                     <% } %>
+                    <p><strong>Category :</strong> <%= pet.category %></p>
                     <% pet.user.forEach(function(theuser){ %>
                         <p><strong>Posted by :</strong> <%= theuser.username %> </p>
                         <p><strong>Email :</strong> <%= theuser.email %> </p>

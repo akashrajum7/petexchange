@@ -106,6 +106,7 @@ app.post("/new", isLoggedIn,function(req, res){
     var title = req.body.title,
         imageurl = req.body.imageurl,
         discription = req.body.discription,
+        category= req.body.category,
         location = req.body.location,
         price = req.body.price,
         user =req.user;
@@ -115,6 +116,7 @@ app.post("/new", isLoggedIn,function(req, res){
         title: title,
         imageurl: imageurl, 
         discription: discription,
+        category: category,
         location: location,
         price: price,
         user: user
@@ -175,7 +177,6 @@ app.get("/ads/:id/edit",isLoggedIn, isOwner, function(req, res){
             res.flash("failure", "Ad not found.");
             res.redirect("/");
         } else {
-            
             res.render("edit", {ad: foundPet});
         }
     });
@@ -187,6 +188,7 @@ app.put("/ads/:id",isLoggedIn, isOwner, function(req, res){
             req.flash("failure", "The campground could not be updated");
             res.redirect("/");
         } else {
+            req.flash("success", "Your ad has been successfully edited.");
             res.redirect("/ads/" + req.params.id);
         }
     });

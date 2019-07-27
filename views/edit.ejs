@@ -18,9 +18,22 @@
                     <input type="text" name="pet[description]" class="form-control" id="post-disc" value="<%= ad.description %>">
                 </div>
                 <div class="form-group">
-                    <label for="inoutCity">Location</label>
+                    <label for="inputCateg">Category</label>
+                    <select id="inputCateg" class="form-control" name="pet[category]" required>
+                        <option value="" <% if(!ad.category){ %><%= "selected" %><% ;} %> disabled>Choose a category</option>
+                        <option <% if(ad.category == "Dog"){ %><%= "selected" %><% ;} %>>Dog</option>
+                        <option <% if(ad.category == "Cat"){ %><%= "selected" %><% ;} %>>Cat</option>
+                        <option <% if(ad.category == "Bird"){ %><%= "selected" %><% ;} %>>Bird</option>
+                        <option <% if(ad.category == "Rabbit"){ %><%= "selected" %><% ;} %>>Rabbit</option>
+                        <option <% if(ad.category == "Fish"){ %><%= "selected" %><% ;} %>>Fish</option>
+                        <option <% if(ad.category == "Mice"){ %><%= "selected" %><% ;} %>>Mice</option>
+                        <option <% if(ad.category == "Snake"){ %><%= "selected" %><% ;} %>>Snake</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="inputCity">Location</label>
                     <select id="inputCity" class="form-control" name="pet[location]" required>
-                        <option value="" <% if(ad.location == ""){ %><%= "selected" %><% ;} %> disabled>Choose a city</option>
+                        <option value="" <% if(!ad.location){ %><%= "selected" %><% ;} %> disabled>Choose a city</option>
                         <option <% if(ad.location == "Mumbai"){ %><%= "selected" %><% ;} %>>Mumbai</option>
                         <option <% if(ad.location == "New Delhi"){ %><%= "selected" %><% ;} %>>New Delhi</option>
                         <option <% if(ad.location == "Kolkata"){ %><%= "selected" %><% ;} %>>Kolkata</option>
