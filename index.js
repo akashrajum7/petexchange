@@ -185,8 +185,8 @@ app.get("/ads/:id/edit",isLoggedIn, isOwner, function(req, res){
 app.put("/ads/:id",isLoggedIn, isOwner, function(req, res){
     Pet.findByIdAndUpdate(req.params.id, req.body.pet, function(err, updatedAd){
         if(err){
-            req.flash("failure", "The campground could not be updated");
-            res.redirect("/");
+            req.flash("failure", "The ad could not be updated");
+            res.redirect("/ads/" + req.params.id);
         } else {
             req.flash("success", "Your ad has been successfully edited.");
             res.redirect("/ads/" + req.params.id);
