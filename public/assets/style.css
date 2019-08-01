@@ -36,6 +36,7 @@ h4,h5{
 }
 .card-title {
     margin-bottom: 1rem;
+    font-weight: 700;
 }
 .alert-homepage{
     margin-top: 16px;
