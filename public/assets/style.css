@@ -2,9 +2,6 @@ body{
     font-family: 'Montserrat', sans-serif;
     font-size: 0.9rem !important;
 }
-nav{
-    background-color: #fff;
-}
 .navbar-brand{
     font-weight: 700;
 }
@@ -58,4 +55,30 @@ h4,h5{
 }
 #head-img{
     margin-bottom: 3px;
+}
+.fa-map-marker-alt{
+    color: #00802b;
+}
+.fa-heart{
+    color: red;
+}
+.nav-user{
+    color: #3b5998!important;
+}
+.nav-logout{
+    color: #b30000!important;
+}
+.nav-signup{
+    color: #29a329!important;
+}
+.nav-shop{
+    color: #e65c00!important;
+}
+.nav-home{
+    color: black!important;
+}
+.post-nav{
+    background-color: yellow;
+    color: black!important;
+    font-weight: 700!important;
 }
