@@ -69,19 +69,22 @@ h4,h5{
     color: #b30000!important;
 }
 .nav-signup{
-    color: #29a329!important;
+    color: #3b5998!important;
 }
 .nav-shop{
-    color: #e65c00!important;
+    color: black!important;
 }
 .nav-home{
     color: black!important;
 }
 .post-nav{
-    background-color: yellow;
+    background-color: #e65c00!important;
     color: black!important;
     font-weight: 700!important;
     text-align: center;
+}
+.underline{
+    border: black 2px solid;
 }
 @media (min-width:768px) {
     .post-nav{
