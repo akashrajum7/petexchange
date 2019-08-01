@@ -82,8 +82,7 @@ app.get("/",function(req,res){
     });
 });
 
-//Adoption page
-
+//Shop page
 app.get("/shop", function(req, res){
     //Get all the pets from database
     Pet.find({}).populate("user").exec(function(err, pets){

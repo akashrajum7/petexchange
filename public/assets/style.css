@@ -2,6 +2,9 @@ body{
     font-family: 'Montserrat', sans-serif;
     font-size: 0.9rem !important;
 }
+nav{
+    background-color: #fff;
+}
 .navbar-brand{
     font-weight: 700;
 }
