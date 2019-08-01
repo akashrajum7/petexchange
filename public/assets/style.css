@@ -81,4 +81,10 @@ h4,h5{
     background-color: yellow;
     color: black!important;
     font-weight: 700!important;
+    text-align: center;
+}
+@media (min-width:768px) {
+    .post-nav{
+        text-align:center;
+    }
 }
