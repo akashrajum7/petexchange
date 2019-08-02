@@ -65,13 +65,13 @@ h4,h5{
     color: red;
 }
 .nav-user{
-    color: #3b5998!important;
+    color: black!important;
 }
 .nav-logout{
     color: #b30000!important;
 }
 .nav-signup{
-    color: #3b5998!important;
+    color: black!important;
 }
 .nav-shop{
     color: black!important;
@@ -80,8 +80,8 @@ h4,h5{
     color: black!important;
 }
 .post-nav{
-    background-color: #e65c00!important;
-    color: black!important;
+    background-color: #ffc000!important;
+    color: white!important;
     font-weight: 700!important;
 }
 .underline{
@@ -89,4 +89,11 @@ h4,h5{
 }
 .nav-item{
     text-align: center;
+}
+.nav-link{
+    padding-right: 0.6rem;
+    padding-left: 0.6rem;
+}
+.nav-post-li{
+    margin-left: 10px;
 }
