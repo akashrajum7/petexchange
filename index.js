@@ -173,7 +173,7 @@ app.post("/new", isLoggedIn,function(req, res){
                             if(err){
                                 res.send(err);
                             } else {
-                                req.flash("success","Your post has been successfully posetd.");
+                                req.flash("success","Your post has been successfully posted.");
                                 res.redirect("/adopt/1");
                             }
                         });

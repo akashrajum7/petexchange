@@ -1,5 +1,5 @@
-const   mongoose = require("mongoose");
-        User     = require("./user")
+const   mongoose = require("mongoose"),
+        User     = require("./user");
         
 //Pet schema
 var petSchema = new mongoose.Schema({

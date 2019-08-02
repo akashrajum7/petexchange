@@ -4,6 +4,7 @@ const   mongoose              = require("mongoose"),
         LocalStrategy         = require("passport-local"),
         passportLocalMongoose = require("passport-local-mongoose");
 
+require("mongoose-type-email");
 
 //User schema
 var userSchema = new mongoose.Schema({
@@ -13,7 +14,7 @@ var userSchema = new mongoose.Schema({
         unique: true
         },
     email: {
-        type: String,
+        type: mongoose.SchemaTypes.Email,
         required:true,
         unique: true
         },
