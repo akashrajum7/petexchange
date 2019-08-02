@@ -172,8 +172,8 @@ app.post("/new", isLoggedIn,function(req, res){
                             if(err){
                                 res.send(err);
                             } else {
-                                req.flash("success","Your post has been successfully posted.");
-                                res.redirect("/shop");
+                                req.flash("success","Your ad has been successfully posted.");
+                                res.redirect("/shop/1");
                             }
                         });
                         
