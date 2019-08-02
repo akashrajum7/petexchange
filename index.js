@@ -82,16 +82,31 @@ app.get("/",function(req,res){
     });
 });
 
-//Shop page
+//Redirecting shop page to shop/1
 app.get("/shop", function(req, res){
-    //Get all the pets from database
-    Pet.find({}).populate("user").exec(function(err, pets){
-        if(err){
-            console.log(err);
-        }else{
-            //Render the page
-            res.render("shop",{pets: pets});
-        }
+    res.redirect("/shop/1");
+});
+
+//Shop page with pagenaton
+app.get("/shop/:page", function(req, res){
+    //No of ads per page
+    var perPage = 8;
+    //Current page no
+    var page = req.params.page || 1;
+    //if page is less than 1 change it to 1
+    if(page < 1){
+        res.redirect("/shop/1");
+    }
+    //Retrieve pets from database whose price is greater than 0
+    Pet.find({price: { $gt: 0 }}).populate("user").skip((perPage * page) - perPage).limit(perPage).exec(function(err, pets){
+        //Count the no of ads
+        Pet.countDocuments({price: { $gt: 0 }}).exec(function(err, count){
+            if(err){
+                console.log(err);
+            }else{
+                res.render("shop", {pets:pets, current: page, pages: Math.ceil(count / perPage)});
+            }
+        });
     });
 });
 
