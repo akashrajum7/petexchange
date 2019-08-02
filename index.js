@@ -68,17 +68,36 @@ app.use(function(req,res,next){
 //ROUTES
 
 //Homepage
-app.get("/",function(req,res){
+//Redirecting / to adopt/1
+app.get("/", function(req, res){
+    res.redirect("/adopt/1");
+});
+//Redirecting /adopt to /adopt/1
+app.get("/adopt", function(req, res){
+    res.redirect("/adopt/1");
+});
+
+app.get("/adopt/:page",function(req,res){
+    //No of ads per page
+    var perPage = 8
+    //Current page
+    var page = req.params.page || 1
+
     //Get all the pets from database
-    Pet.find({}).populate("user").exec(function(err, pets){
+    Pet.find({ price: { $eq: 0 }}).populate("user").skip((perPage * page) - perPage).limit(perPage).exec(function(err, pets){
+        //Count the no of ads
+        Pet.countDocuments({price: { $eq: 0 }}).exec(function(err, count){
         if(err){
             console.log(err);
         }else{
             //Render the page
             res.render("homepage",{
                 pets: pets,
+                current: page,
+                pages: Math.ceil(count / perPage)
             });
         }
+        });
     });
 });
 
@@ -155,7 +174,7 @@ app.post("/new", isLoggedIn,function(req, res){
                                 res.send(err);
                             } else {
                                 req.flash("success","Your post has been successfully posetd.");
-                                res.redirect("/");
+                                res.redirect("/adopt/1");
                             }
                         });
                         
@@ -189,7 +208,7 @@ app.get("/ads/:id/edit",isLoggedIn, isOwner, function(req, res){
     Pet.findById(req.params.id, function(err, foundPet){
         if(err){
             res.flash("failure", "Ad not found.");
-            res.redirect("/");
+            res.redirect("/adopt/1");
         } else {
             res.render("edit", {ad: foundPet});
         }
@@ -226,10 +245,10 @@ app.delete("/ads/:id", function(req, res){
     Pet.findByIdAndRemove(req.params.id, function(err){
         if(err){
             req.flash("failure", "The ad could not be deleted");
-            res.redirect("/");
+            res.redirect("/adopt/1");
         } else {
             req.flash("success", "The ad was successfully deleted");
-            res.redirect("/");
+            res.redirect("/adopt/1");
         }
     });
 });
@@ -250,7 +269,7 @@ app.get("/user/:id/edit",isLoggedIn, isSameUser, function(req, res){
     User.findById(req.params.id, function(err, foundUser){
         if(err){
             req.flash("failure", "The user was not found.");
-            res.redirect("/");
+            res.redirect("/adopt/1");
         } else {
             res.render("useredit",{user: foundUser});
         }
@@ -278,7 +297,7 @@ app.get("/signin",function(req, res){
 
 app.post("/signin", passport.authenticate("local",
 {
-    successRedirect: "/",
+    successRedirect: "/adopt/1",
     failureRedirect: "/signin",
     failureFlash: true,
     successFlash: "You have successfully logged in."
@@ -300,7 +319,7 @@ app.post("/signup", function(req,res){
         }
         passport.authenticate("local")(req,res,function(){
             req.flash("successfullsignup","You have been successfully signed up.");
-            res.redirect("/");
+            res.redirect("/adopt/1");
         });
     });
 });
@@ -309,7 +328,7 @@ app.post("/signup", function(req,res){
 app.get("/logout", function(req, res){
     req.logout();
     req.flash("successfulllogout","You have been successfully logged out.");
-    res.redirect("/");
+    res.redirect("/adopt/1");
 });
 
 //404
@@ -342,7 +361,7 @@ function isOwner(req, res, next){
             return next();
         } else {
             req.flash("failure", "Only owners are allowed to modify the ads");
-            res.redirect("/");
+            res.redirect("/adopt/1");
         }
     });
 }

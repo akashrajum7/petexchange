@@ -25,6 +25,14 @@
         $(document).ready(function() {
         // get current URL path and assign 'active' class
         var pathname = window.location.pathname;
+        //Check if path is shop
+        if(pathname.includes("/shop/")){
+            pathname = "/shop/1";
+        }
+        //check if path is adoption
+        if(pathname.includes("/adopt/")){
+            pathname = "/adopt/1";
+        }
         $('ul a[href="'+pathname+'"]').parent().addClass('underline');
         });
     </script>
@@ -32,7 +40,7 @@
 </head>
 <body>
     <nav class="navbar sticky-top navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="/">
+        <a class="navbar-brand" href="/adopt/1">
             <img src="https://i.imgur.com/FFQZBux.png" id="head-img" width="30" height="30" alt="">
             Pawfection
         </a>
@@ -42,10 +50,10 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="nav navbar-nav ml-auto">
                 <li class="nav-item">
-                    <a class="nav-link nav-home" href="/"><i class="fas fa-home"></i> Home</a>
+                    <a class="nav-link nav-home" href="/adopt/1"><i class="fas fa-home"></i> Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link nav-shop" href="/shop"><i class="fas fa-shopping-bag"></i> Shop</a>
+                    <a class="nav-link nav-shop" href="/shop/1"><i class="fas fa-shopping-bag"></i> Shop</a>
                 </li>
                 <% if(!currentUser){ %>
                 <li class="nav-item">
