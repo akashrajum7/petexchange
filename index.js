@@ -241,7 +241,7 @@ app.get("/ads/:id", isLoggedIn, function(req, res){
 });
 
 //Delete an ad route
-app.delete("/ads/:id", function(req, res){
+app.delete("/ads/:id",isOwner, function(req, res){
     Pet.findByIdAndRemove(req.params.id, function(err){
         if(err){
             req.flash("failure", "The ad could not be deleted");
