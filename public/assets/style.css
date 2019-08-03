@@ -50,7 +50,7 @@ h4,h5{
     margin-top: 1rem;
 }
 .disc-bod{
-    margin: 15px 0px;
+    margin: 24px 0px;
 }
 .prof-row{
     margin: 15px 0px;
@@ -68,27 +68,27 @@ h4,h5{
     color: red;
 }
 .nav-user{
-    color: black!important;
+    color: white!important;
 }
 .nav-logout{
-    color: #b30000!important;
+    color: #ff1a1a!important;
 }
 .nav-signup{
-    color: black!important;
+    color: white!important;
 }
 .nav-shop{
-    color: black!important;
+    color: white!important;
 }
 .nav-home{
-    color: black!important;
+    color: white!important;
 }
 .post-nav{
-    background-color: #ffc000!important;
+    background-color: #f08804!important;
     color: white!important;
     font-weight: 700!important;
 }
 .underline{
-    border: black 2px solid;
+    border: white 2px solid;
 }
 .nav-item{
     text-align: center;
@@ -128,4 +128,17 @@ h4,h5{
     font-size: 1.5rem;
     color: white;
     margin: 0.5rem;
+}
+.navbar {
+    background-color: #232f3e!important;
+}
+.navbar-brand{
+    color: white!important;
+}
+.jumbotron{
+    padding: 1rem!important;
+    background-color: darkslategray;
+}
+.fot-cop{
+    color: white;
 }
