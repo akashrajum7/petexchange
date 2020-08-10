@@ -150,4 +150,8 @@ h4,h5{
 }
 .footer-copyright {
     height: 65px;
+    background-color: #212529;
+    position: absolute;
+    width: 100%;
+    bottom: 0;
 }
