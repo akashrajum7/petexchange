@@ -1,6 +1,11 @@
+html {
+    position: relative;
+    min-height: 100%;
+}
 body{
     font-family: 'Montserrat', sans-serif;
     font-size: 0.9rem !important;
+    margin-bottom: -65px;
 }
 .navbar-brand{
     font-weight: 700;
@@ -142,4 +147,7 @@ h4,h5{
 .fot-cop{
     color: white;
     margin-bottom: 0px;
+}
+.footer-copyright {
+    height: 65px;
 }
