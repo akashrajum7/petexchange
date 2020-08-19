@@ -1,70 +1,78 @@
 <% include partials/header %>
 
 <div class="container det-cont">
-    <% if(success && success.length > 0) { %>
-        <div class="alert alert-success alert-dismissible fade show alert-homepage" role="alert">
-            <%= success %>
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-            </button>
-        </div>
-    <% } %> 
-    <% if(failure && failure.length > 0) { %>
-        <div class="alert alert-danger alert-dismissible fade show alert-homepage" role="alert">
-            <%= failure %>
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-            </button>
-        </div>
-    <% } %>
-    <div class="row">
-        <div class="col-lg-6 col-md-6 col-sm-6">
-            <div class="card">
-                <div class="card-header">
-                    <h4>Photo</h4>
-                </div>
-                <div class="card-body">
-                        <img src="<%= pet.imageurl %>" class="img-fluid" alt="Responsive image">
-                </div>
-            </div>
-        </div>
-        <div class="col-lg-6 col-md-6 col-sm-6">
-            <div class="card">
-                <div class="card-header">
-                    <h4>Details</h4>
-                </div>
-                <div class="card-body">
-                    <p><strong>Title :</strong> <%= pet.title %></p>
-                    <p><strong>Location :</strong> <%= pet.location %></p>
-                    <% if (pet.price>0){ %>
-                        <p><strong>Price :</strong> <%= pet.price %></p>
-                    <% } else { %>
-                        <p><strong>Type :</strong> <i class="fas fa-heart"></i> Adoption</p>
-                    <% } %>
-                    <p><strong>Category :</strong> <%= pet.category %></p>
-                    <% pet.user.forEach(function(theuser){ %>
-                        <p><strong>Posted by :</strong> <%= theuser.username %> </p>
-                        <p><strong>Email :</strong> <%= theuser.email %> </p>
-                        <p><strong>Phone :</strong> <%= theuser.phone %> </p>
-                    <% }); %>
-                    <% if(pet.user[0]._id == curUser.id){ %>
-                        <a href="/ads/<%= pet._id %>/edit" class="btn btn-warning">Edit</a>
-                        <form action="/ads/<%= pet._id %>?_method=DELETE" method="POST">
-                            <button class="btn btn-danger btn-del">Delete</button>
-                        </form>
-                    <% } %>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="card text-center disc-bod">
+  <% if(success && success.length > 0) { %>
+  <div
+    class="alert alert-success alert-dismissible fade show alert-homepage"
+    role="alert"
+  >
+    <%= success %>
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <% } %> <% if(failure && failure.length > 0) { %>
+  <div
+    class="alert alert-danger alert-dismissible fade show alert-homepage"
+    role="alert"
+  >
+    <%= failure %>
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <% } %>
+  <div class="row">
+    <div class="col-lg-6 col-md-6 col-sm-6">
+      <div class="card">
         <div class="card-header">
-            <h4>Description</h4>
+          <h4>Photo</h4>
         </div>
         <div class="card-body">
-            <p><%= pet.description %></p>
+          <img
+            src="<%= pet.imageurl %>"
+            class="img-fluid"
+            alt="Responsive image"
+          />
         </div>
+      </div>
     </div>
+    <div class="col-lg-6 col-md-6 col-sm-6">
+      <div class="card">
+        <div class="card-header">
+          <h4>Details</h4>
+        </div>
+        <div class="card-body">
+          <p><strong>Title :</strong> <%= pet.title %></p>
+          <p><strong>Location :</strong> <%= pet.location %></p>
+          <% if (pet.price>0){ %>
+          <p><strong>Price :</strong> <%= pet.price %></p>
+          <% } else { %>
+          <p><strong>Type :</strong> <i class="fas fa-heart"></i> Adoption</p>
+          <% } %>
+          <p><strong>Category :</strong> <%= pet.category %></p>
+          <% pet.user.forEach(function(theuser){ %>
+          <p><strong>Posted by :</strong> <%= theuser.username %></p>
+          <p><strong>Email :</strong> <%= theuser.email %></p>
+          <p><strong>Phone :</strong> <%= theuser.phone %></p>
+          <% }); %> <% if(pet.user[0]._id == curUser.id){ %>
+          <a href="/ads/<%= pet._id %>/edit" class="btn btn-warning">Edit</a>
+          <form action="/ads/<%= pet._id %>?_method=DELETE" method="POST">
+            <button class="btn btn-danger btn-del">Delete</button>
+          </form>
+          <% } %>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card text-center disc-bod">
+    <div class="card-header">
+      <h4>Description</h4>
+    </div>
+    <div class="card-body">
+      <p><%= pet.discription %></p>
+    </div>
+  </div>
 </div>
 
 <% include partials/footer %>
