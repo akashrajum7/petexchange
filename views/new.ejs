@@ -1,59 +1,87 @@
 <% include partials/header %>
 
 <div class="container">
-    <div class="row h-100">
-        <div class="col-md-5 mx-auto">
-            <form id="post-form" action="/new" method="POST">
-                <h1>Post new ad</h1><hr>
-                <div class="form-group">
-                    <label for="post-title">Title</label>
-                    <input type="text" name="title" class="form-control" id="post-title" placeholder="Enter the title" required>
-                </div>
-                <div class="form-group">
-                    <label for="post-image">Image URL</label>
-                    <input type="text" name="imageurl" class="form-control" id="post-image" placeholder="Enter the url of the image" required>
-                </div>
-                <div class="form-group">
-                    <label for="post-disc">Description</label>
-                    <input type="text" name="description" class="form-control" id="post-disc" placeholder="Enter the description">
-                </div>
-                <div class="form-group">
-                    <label for="inputCateg">Category</label>
-                    <select id="inputCateg" class="form-control" name="category" required>
-                        <option value="" selected disabled>Choose a category</option>
-                        <option>Dog</option>
-                        <option>Cat</option>
-                        <option>Bird</option>
-                        <option>Rabbit</option>
-                        <option>Fish</option>
-                        <option>Mice</option>
-                        <option>Snake</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label for="inputCity">Location</label>
-                    <select id="inputCity" class="form-control" name="location" required>
-                        <option value="" selected disabled>Choose a city</option>
-                        <option>Mumbai</option>
-                        <option>New Delhi</option>
-                        <option>Kolkata</option>
-                        <option>Chennai</option>
-                        <option>Bangalore</option>
-                        <option>Hyderabad</option>
-                        <option>Ahmedabad</option>
-                        <option>Pune</option>
-                        <option>Surat</option>
-                        <option>Jaipur</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label for="post-price">Price</label>
-                    <input type="number" name="price" class="form-control" id="post-price" placeholder="Enter the price or Enter 0 to post in adoption" required>
-                </div>
-                <button type="submit" class="btn btn-primary">Submit</button>
-            </form>
-        </div>    
+  <div class="row h-100">
+    <div class="col-md-5 mx-auto">
+      <form id="post-form" action="/new" method="POST">
+        <h1>Post new ad</h1>
+        <hr />
+        <div class="form-group">
+          <label for="post-title">Title</label>
+          <input
+            type="text"
+            name="title"
+            class="form-control"
+            id="post-title"
+            placeholder="Enter the title"
+            required
+          />
+        </div>
+        <div class="form-group">
+          <label for="post-image">Image URL</label>
+          <input
+            type="text"
+            name="imageurl"
+            class="form-control"
+            id="post-image"
+            placeholder="Enter the url of the image"
+            required
+          />
+        </div>
+        <div class="form-group">
+          <label for="post-disc">Description</label>
+          <input
+            type="text"
+            name="discription"
+            class="form-control"
+            id="post-disc"
+            placeholder="Enter the description"
+          />
+        </div>
+        <div class="form-group">
+          <label for="inputCateg">Category</label>
+          <select id="inputCateg" class="form-control" name="category" required>
+            <option value="" selected disabled>Choose a category</option>
+            <option>Dog</option>
+            <option>Cat</option>
+            <option>Bird</option>
+            <option>Rabbit</option>
+            <option>Fish</option>
+            <option>Mice</option>
+            <option>Snake</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="inputCity">Location</label>
+          <select id="inputCity" class="form-control" name="location" required>
+            <option value="" selected disabled>Choose a city</option>
+            <option>Mumbai</option>
+            <option>New Delhi</option>
+            <option>Kolkata</option>
+            <option>Chennai</option>
+            <option>Bangalore</option>
+            <option>Hyderabad</option>
+            <option>Ahmedabad</option>
+            <option>Pune</option>
+            <option>Surat</option>
+            <option>Jaipur</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="post-price">Price</label>
+          <input
+            type="number"
+            name="price"
+            class="form-control"
+            id="post-price"
+            placeholder="Enter the price or Enter 0 to post in adoption"
+            required
+          />
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </form>
     </div>
+  </div>
 </div>
 
 <% include partials/footer %>
